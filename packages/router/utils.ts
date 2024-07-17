@@ -1046,7 +1046,8 @@ function compilePath(
           params.push({ paramName, isOptional: isOptional != null });
           return isOptional ? "/?([^\\/]+)?" : "/([^\\/]+)";
         }
-      );
+      )
+      .replace(/\/([\w-]+)(\?)/g, "/($2)?"); // Encapsulate optional static secments
 
   if (path.endsWith("*")) {
     params.push({ paramName: "*" });
